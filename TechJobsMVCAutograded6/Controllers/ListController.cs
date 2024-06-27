@@ -42,9 +42,27 @@ public class ListController : Controller
     }
 
     // TODO #2 - Complete the Jobs action method
+
+    [Route("/JobData.cs/")]
     public IActionResult Jobs(string column, string value)
     {
-        return View();
-    }
-}
+        List<Job> jobs = new List<Job>();
+        
+        if (column.Equals("All") && value.Equals("View All"))
+        {
+            jobs = JobData.FindAll();
+        }
 
+        else
+        {
+            jobs = JobData.FindByColumnAndValue(column, value);
+        }
+        
+        
+        ViewBag.jobs = jobs;
+        
+        return View(jobs);
+    }
+
+
+}
