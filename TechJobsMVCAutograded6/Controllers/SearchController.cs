@@ -26,7 +26,7 @@ public IActionResult Results(string searchType, string searchTerm)
         {
             jobs = JobData.FindAll();
         }
-        if(searchType.Equals("All"))
+        else if(searchType.Equals("All"))
         {
             jobs = JobData.FindByValue(searchTerm);
         }
